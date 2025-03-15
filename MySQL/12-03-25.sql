@@ -153,6 +153,52 @@ SELECT * FROm Teachers;
 SElECt * FROM Students;
  SELECT * FROM Enrolled;
 
+CREATE DATABASE Joins;
+use Joins;
 
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    department_id INT
+);
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100)
+);
+INSERT INTO employees (emp_id, name, department_id)
+VALUES 
+    (1, 'Alice', 101),
+    (2, 'Bob', 102),
+    (3, 'Charlie', NULL),
+    (4, 'David', 101);
+INSERT INTO departments (department_id, department_name)
+VALUES
+    (101, 'HR'),
+    (102, 'IT'),
+    (103, 'Finance');
+
+
+SELECT employees.name, departments.department_name
+FROM employees
+INNER JOIN departments 
+ON employees.department_id = departments.department_id;
+SELECT employees.name, departments.department_name
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.department_id;
+
+SELECT employees.name, departments.department_name
+FROM employees
+RIGHT JOIN departments ON employees.department_id = departments.department_id;
+SELECT employees.name, departments.department_name
+FROM employees
+FULL JOIN departments ON employees.department_id = departments.department_id;
+SELECT employees.name, departments.department_name
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.department_id
+UNION
+SELECT employees.name, departments.department_name
+FROM employees
+RIGHT JOIN departments ON employees.department_id = departments.department_id;
 
 
